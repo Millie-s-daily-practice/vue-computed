@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js"
+    integrity="sha512-XdUZ5nrNkVySQBnnM5vzDqHai823Spoq1W3pJoQwomQja+o4Nw0Ew1ppxo5bhF2vMug6sfibhKWcNJsG8Vj9tg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/site.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="number" name="" id="" v-model="num1">
+    +
+    <input type="number" name="" id="" v-model="num2">
+    =
+    <input type="number" name="" id="" v-model="num3">
+    <br>
+    <input type="number" name="" id="" v-model="value">
+  </div>
+</body>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      num1: 0,
+      num2: 0,
+      value: 0, //跟 watch 的命名一樣
+    },
+    // computed 計算運用
+    computed: {
+      num3: {
+        get() {
+          return parseInt(this.num1, 10) + parseInt(this.num2, 10);
+        },
+        set(val) {
+          this.num2 = parseInt(val, 10) - parseInt(this.num1, 10);
+        },
+      },
+    },
+    // 偵聽器 watch 運用
+    watch: {
+      // 函式命名必須跟 data 裡的一樣
+      value(val, oldVal) {
+        console.log(`${oldVal} -> ${val}`);
+      }
+    }
+  })
+</script>
+
+</html>
